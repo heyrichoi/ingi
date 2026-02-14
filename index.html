@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>인기 도네 룰렛</title>
+<title>JJ랜드 도네 룰렛</title>
 <!-- Google Fonts: Jua -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -101,7 +101,7 @@
 
   /* Fast spinning animation class */
   .wheel-rotator.spinning {
-    animation: spin-infinite 0.5s linear infinite;
+    animation: spin-infinite 0.08s linear infinite; /* 속도 대폭 증가 (0.5s -> 0.08s) */
   }
 
   @keyframes spin-infinite {
@@ -514,8 +514,8 @@
     background: linear-gradient(90deg, rgba(76, 29, 149, 0.8), rgba(50, 10, 100, 0.8));
     color: #fff;
     font-weight: 700;
-    padding: 16px;
-    font-size: 15px;
+    padding: 10px 16px; /* 패딩 축소 (16px -> 10px) */
+    font-size: 14px; /* 폰트 사이즈 약간 축소 (15px -> 14px) */
     align-items: center;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
@@ -525,7 +525,7 @@
   .table-body {
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 80px;
+    padding-bottom: 60px; /* 하단 여백 축소 */
   }
   /* Custom Scrollbar */
   .table-body::-webkit-scrollbar { width: 6px; }
@@ -536,7 +536,7 @@
   .table-row {
     display: grid;
     grid-template-columns: 70px 2fr 130px 100px;
-    padding: 12px 16px;
+    padding: 6px 16px; /* 패딩 축소 (12px -> 6px) */
     border-bottom: 1px solid rgba(255,255,255,0.03);
     align-items: center;
     transition: background 0.2s;
@@ -552,15 +552,15 @@
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.3);
     color: var(--danger-color);
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
+    width: 24px; /* 크기 축소 (28px -> 24px) */
+    height: 24px;
+    border-radius: 6px; /* 둥글기 약간 조정 */
     cursor: pointer;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 12px;
     transition: all 0.2s;
   }
   .btn-delete:hover { 
@@ -573,20 +573,20 @@
   .cell-name {
     display: flex;
     justify-content: center;
-    padding: 0 10px;
+    padding: 0 5px; /* 좌우 패딩 축소 */
   }
   .input-ghost {
     background: transparent;
     border: 1px solid transparent;
     color: var(--text-color);
-    font-size: 15px;
-    padding: 8px;
+    font-size: 14px; /* 폰트 사이즈 축소 (15px -> 14px) */
+    padding: 6px; /* 패딩 축소 (8px -> 6px) */
     width: 100%;
     border-radius: 6px;
     text-align: center;
     transition: all 0.2s;
     font-weight: 500;
-    font-family: 'Jua', sans-serif; /* Explicitly set Jua */
+    font-family: 'Jua', sans-serif;
   }
   .input-ghost:focus {
     border-color: var(--accent-color);
@@ -600,10 +600,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
     background: rgba(0,0,0,0.3);
-    padding: 4px;
-    border-radius: 8px;
+    padding: 2px; /* 패딩 축소 (4px -> 2px) */
+    border-radius: 6px;
     width: fit-content;
     margin: 0 auto;
     border: 1px solid rgba(255,255,255,0.05);
@@ -612,14 +612,14 @@
     background: transparent;
     color: var(--text-muted);
     border: none;
-    width: 24px;
-    height: 24px;
+    width: 20px; /* 버튼 크기 축소 (24px -> 20px) */
+    height: 20px;
     border-radius: 4px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 10px;
     transition: all 0.2s;
   }
   .weight-btn:hover {
@@ -628,13 +628,14 @@
   }
   .input-number {
     text-align: center;
-    font-family: 'Jua', sans-serif; /* Explicitly set Jua */
-    width: 40px;
-    padding: 2px;
+    font-family: 'Jua', sans-serif;
+    width: 36px; /* 너비 축소 */
+    padding: 0;
     background: transparent;
     border: none;
     font-weight: 700;
     color: var(--secondary-accent);
+    font-size: 14px;
   }
   .input-number:focus { background: transparent; border: none; }
   .input-number::-webkit-outer-spin-button,
@@ -646,13 +647,13 @@
   .prob-text {
     text-align: center;
     color: var(--text-muted);
-    font-size: 14px;
-    font-family: 'Jua', sans-serif; /* Explicitly set Jua */
+    font-size: 13px; /* 폰트 사이즈 축소 */
+    font-family: 'Jua', sans-serif;
   }
 
   /* Add Button Row */
   .add-row {
-    padding: 15px;
+    padding: 10px; /* 패딩 축소 (15px -> 10px) */
     border-top: 1px solid var(--border-color);
     background: rgba(20, 5, 35, 0.95);
     position: absolute;
@@ -665,8 +666,8 @@
     background: linear-gradient(90deg, #10b981, #059669);
     color: white;
     border: none;
-    padding: 14px;
-    border-radius: 12px;
+    padding: 10px; /* 패딩 축소 (14px -> 10px) */
+    border-radius: 10px;
     font-weight: 700;
     cursor: pointer;
     display: flex;
@@ -674,9 +675,9 @@
     justify-content: center;
     gap: 8px;
     transition: all 0.2s;
-    font-size: 16px;
+    font-size: 15px; /* 폰트 사이즈 약간 축소 */
     box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
-    font-family: 'Jua', sans-serif; /* Explicitly set Jua */
+    font-family: 'Jua', sans-serif;
   }
   .btn-add:hover { filter: brightness(1.1); transform: translateY(-1px); }
   .btn-add:active { transform: translateY(0); }
@@ -1298,7 +1299,8 @@ spinBtn.addEventListener('click', () => {
     if (diff < 0) diff += 360;
     
     // Extra spins for decelerating
-    const extraSpins = 360 * 5; 
+    // 관성을 위해 회전수 증가 (5 -> 15)
+    const extraSpins = 360 * 15; 
     const finalRotation = state.rotation + diff + extraSpins;
     
     const fuzz = (Math.random() - 0.5) * (sliceAngle * 0.8);
@@ -1310,7 +1312,8 @@ spinBtn.addEventListener('click', () => {
 
     // Apply CSS Transition for smooth stop (Deceleration curve)
     // Using an ease-out curve for deceleration
-    wheelRotator.style.transition = 'transform 6s cubic-bezier(0.2, 0.8, 0.3, 1)';
+    // 시간도 살짝 늘림 (6s -> 7s)
+    wheelRotator.style.transition = 'transform 7s cubic-bezier(0.1, 1, 0.1, 1)';
     wheelRotator.style.transform = `rotate(${state.rotation}deg)`;
 
     setTimeout(() => {
@@ -1328,7 +1331,7 @@ spinBtn.addEventListener('click', () => {
       modalOverlay.style.display = 'flex';
       void winnerModal.offsetWidth;
       winnerModal.classList.add('show');
-    }, 6100); // Slightly longer than transition
+    }, 7100); // Slightly longer than transition
   }
 });
 
