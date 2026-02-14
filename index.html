@@ -32,7 +32,11 @@
     padding: 0;
     /* Font change to Jua */
     font-family: 'Jua', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    background: radial-gradient(circle at center, #2e1065 0%, #0f0219 100%);
+    background-color: #0f0219;
+    /* Background: Radial Gradient Only */
+    background-image: radial-gradient(circle at center, #2e1065 0%, #0f0219 100%);
+    background-size: cover;
+    background-attachment: fixed;
     color: var(--text-color);
     display: flex;
     justify-content: center;
@@ -56,7 +60,7 @@
 
   /* --- LEFT COLUMN: ROULETTE --- */
   .roulette-section {
-    background: rgba(20, 5, 35, 0.6);
+    background: rgba(20, 5, 35, 0.3); /* 투명도 더 낮춤 (0.5 -> 0.3) */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -137,13 +141,14 @@
 
   .pointer {
     position: absolute;
-    top: -35px;
+    top: -30px; /* 위치 조정 */
     left: 50%;
     transform: translateX(-50%);
-    width: 50px;
-    height: 60px;
+    width: 40px; /* 모양 변경을 위해 너비 조정 */
+    height: 50px; /* 모양 변경을 위해 높이 조정 */
     z-index: 20;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 0, 0.8));
+    /* 네온 효과: 밝은 코어 + 강한 글로우 */
+    filter: drop-shadow(0 0 5px #d946ef) drop-shadow(0 0 15px #d946ef);
   }
 
   /* Labels */
@@ -190,7 +195,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: rgba(46, 16, 101, 0.5);
+    background: rgba(46, 16, 101, 0.4); /* 투명도 조절 */
     padding: 10px 30px;
     border-radius: 16px;
     border: 1px solid rgba(217, 70, 239, 0.3);
@@ -211,12 +216,20 @@
     text-shadow: 0 0 10px rgba(255, 255, 0, 0.6), 0 0 20px rgba(255, 255, 0, 0.4);
     letter-spacing: -0.5px;
   }
+  /* Smaller detail text in result */
+  .result-detail {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 4px;
+    text-shadow: none;
+  }
 
   /* --- Calculator Section --- */
   .calc-container {
     width: 100%;
     max-width: 380px;
-    background: rgba(30, 10, 50, 0.8);
+    background: rgba(30, 10, 50, 0.4); /* 투명도 더 낮춤 (0.6 -> 0.4) */
     border: 1px solid var(--border-color);
     border-radius: 16px;
     padding: 20px;
@@ -327,7 +340,7 @@
     object-fit: contain;
     z-index: 0;
     pointer-events: none;
-    opacity: 0.8;
+    opacity: 1; /* 투명도 제거 (0.8 -> 1) 잘 보이도록 */
     transition: opacity 0.3s ease, transform 0.3s ease;
     filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
   }
@@ -336,23 +349,33 @@
   .controls-header {
     display: flex;
     flex-direction: column; /* Stack button and timer for full width button */
-    gap: 20px;
+    gap: 15px;
     margin-bottom: 24px;
     position: relative;
     z-index: 2;
-    background: rgba(30, 10, 53, 0.8);
-    backdrop-filter: blur(10px);
-    padding: 20px;
+    background: rgba(30, 10, 53, 0.5); /* 투명도 더 낮춤 (0.7 -> 0.5) */
+    backdrop-filter: blur(5px); /* 블러 효과 약간 감소 */
+    padding: 25px 20px;
     border-radius: 20px;
     border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    align-items: center;
   }
 
-  .header-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
+  /* Header Logo (Inline) */
+  .header-logo-inline {
+    height: 85px; /* 로고 크기 확대 (60px -> 85px) */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(217, 70, 239, 0.5)); 
+    margin-right: 30px; /* 간격 확대 */
+  }
+
+  /* 반응형: 화면이 작아지면 로고 숨기기 (우선순위 낮음) */
+  @media (max-width: 1100px) {
+    .header-logo-inline {
+      display: none;
+    }
   }
 
   /* Spin Button */
@@ -402,9 +425,10 @@
   .timer-container {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: center; /* 타이머 컨트롤 중앙 정렬 */
+    margin-bottom: 5px;
   }
 
   .quick-timer-group {
@@ -496,7 +520,7 @@
   /* Data Table */
   .data-table-container {
     flex: 1;
-    background: rgba(20, 5, 35, 0.85); 
+    background: rgba(20, 5, 35, 0.4); /* 투명도 더 낮춤 (0.6 -> 0.4) */
     border-radius: 16px;
     overflow: hidden;
     display: flex;
@@ -504,14 +528,14 @@
     border: 1px solid var(--border-color);
     position: relative;
     z-index: 1;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
   }
 
   .table-header {
     display: grid;
     grid-template-columns: 70px 2fr 130px 100px;
-    background: linear-gradient(90deg, rgba(76, 29, 149, 0.8), rgba(50, 10, 100, 0.8));
+    background: linear-gradient(90deg, rgba(76, 29, 149, 0.6), rgba(50, 10, 100, 0.6)); /* 헤더 투명도 조절 */
     color: #fff;
     font-weight: 700;
     padding: 10px 16px; /* 패딩 축소 (16px -> 10px) */
@@ -568,6 +592,11 @@
     color: white; 
     box-shadow: 0 0 10px rgba(255, 0, 85, 0.4);
   }
+  .btn-delete:disabled {
+    filter: grayscale(1);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 
   /* Input centering */
   .cell-name {
@@ -593,6 +622,10 @@
     background: rgba(0,0,0,0.3);
     outline: none;
     box-shadow: 0 0 5px rgba(217, 70, 239, 0.3);
+  }
+  .input-ghost:disabled {
+    color: var(--text-muted);
+    cursor: not-allowed;
   }
 
   /* Weight Control Cell */
@@ -626,6 +659,11 @@
     background: rgba(255,255,255,0.1);
     color: white;
   }
+  .weight-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+
   .input-number {
     text-align: center;
     font-family: 'Jua', sans-serif;
@@ -638,6 +676,7 @@
     font-size: 14px;
   }
   .input-number:focus { background: transparent; border: none; }
+  .input-number:disabled { color: var(--text-muted); }
   .input-number::-webkit-outer-spin-button,
   .input-number::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -655,7 +694,7 @@
   .add-row {
     padding: 10px; /* 패딩 축소 (15px -> 10px) */
     border-top: 1px solid var(--border-color);
-    background: rgba(20, 5, 35, 0.95);
+    background: rgba(20, 5, 35, 0.7); /* 하단 버튼 영역 투명도 조절 */
     position: absolute;
     bottom: 0;
     left: 0;
@@ -681,12 +720,19 @@
   }
   .btn-add:hover { filter: brightness(1.1); transform: translateY(-1px); }
   .btn-add:active { transform: translateY(0); }
+  .btn-add:disabled {
+    background: #4a5568;
+    color: #a0aec0;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+  }
 
   /* Export Area */
   .export-area {
     margin-top: 20px;
     padding: 12px 16px;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2); /* 투명도 더 낮춤 */
     border-radius: 12px;
     border: 1px solid var(--border-color);
     display: flex;
@@ -730,14 +776,19 @@
     z-index: 1000;
     backdrop-filter: blur(8px);
   }
+  
+  /* Larger Modal Layout */
   .modal {
     background: linear-gradient(135deg, #2e1065, #0f0219);
-    padding: 50px;
+    padding: 30px;
     border-radius: 24px;
     text-align: center;
     box-shadow: 0 0 50px rgba(217, 70, 239, 0.5);
     border: 2px solid var(--accent-color);
-    min-width: 450px;
+    min-width: 500px; /* Bigger Width */
+    max-height: 85vh; /* Bigger Height */
+    display: flex;
+    flex-direction: column;
     transform: scale(0.9);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -749,21 +800,66 @@
   .modal h2 {
     color: var(--secondary-accent);
     font-size: 1.5rem;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0;
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
   }
   .winner-text {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 900;
     color: #ffff00;
     text-shadow: 0 0 20px rgba(255, 255, 0, 0.8), 0 0 40px rgba(255, 255, 0, 0.4);
     margin-bottom: 20px;
   }
+  
+  /* Stats List Inside Modal */
+  .modal-stats-label {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 8px;
+    text-align: left;
+    width: 100%;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+  }
+
+  .modal-stats-list {
+    flex: 1;
+    overflow-y: auto;
+    width: 100%;
+    background: rgba(0,0,0,0.2);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  /* Custom scrollbar for modal list */
+  .modal-stats-list::-webkit-scrollbar { width: 6px; }
+  .modal-stats-list::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 15px;
+    color: #e2e8f0;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row.is-winner {
+    background: rgba(255, 255, 0, 0.15);
+    color: #ffff00;
+    font-weight: bold;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 0, 0.3);
+  }
+
   .modal-hint {
     color: var(--text-muted);
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 0.9rem;
   }
 
@@ -816,8 +912,10 @@
 
       <div class="wheel-center"></div>
       <!-- SVG Pointer -->
+      <!-- 물방울 모양 (동글동글한 핀) -->
       <svg class="pointer" viewBox="0 0 40 50">
-        <path d="M20 50 L0 0 L40 0 Z" fill="#ffff00" stroke="#d97706" stroke-width="2"/>
+        <path d="M20 50 C20 50 40 30 40 18 C40 8 31 0 20 0 C9 0 0 8 0 18 C0 30 20 50 20 50 Z" 
+              fill="#ffe0f7" stroke="#d946ef" stroke-width="2"/>
       </svg>
     </div>
 
@@ -860,21 +958,22 @@
 
     <!-- Header: Spin Button & Timer -->
     <div class="controls-header">
-      <div class="header-top-row">
-        <!-- Re-arranged for the layout -->
-        <div class="timer-container">
-            <!-- Quick Timer Buttons -->
-            <div class="quick-timer-group">
-              <button class="btn-quick" onclick="setTimer(60)">1분</button>
-              <button class="btn-quick" onclick="setTimer(120)">2분</button>
-              <button class="btn-quick" onclick="setTimer(180)">3분</button>
-            </div>
-    
-            <div class="timer-box">
-              <div class="timer-label">자동 타이머</div>
-              <div class="timer-display" id="timerDisplay">02:00</div>
-              <input type="number" class="timer-edit-input" id="timerInput" value="120" />
-            </div>
+      
+      <div class="timer-container">
+          <!-- Logo Moved Here (Inline Left) -->
+          <img src="https://i.imgur.com/xRWsMAj.png" alt="Logo" class="header-logo-inline" />
+
+          <!-- Quick Timer Buttons -->
+          <div class="quick-timer-group">
+            <button class="btn-quick" onclick="setTimer(60)">1분</button>
+            <button class="btn-quick" onclick="setTimer(120)">2분</button>
+            <button class="btn-quick" onclick="setTimer(180)">3분</button>
+          </div>
+  
+          <div class="timer-box">
+            <div class="timer-label">자동 타이머</div>
+            <div class="timer-display" id="timerDisplay">02:00</div>
+            <input type="number" class="timer-edit-input" id="timerInput" value="120" />
           </div>
       </div>
       
@@ -886,7 +985,7 @@
       <div class="table-header">
         <div>삭제</div>
         <div>이름</div>
-        <div>크기</div>
+        <div>스택</div>
         <div>확률</div>
       </div>
       <div class="table-body" id="tableBody">
@@ -915,6 +1014,13 @@
   <div class="modal" id="winnerModal">
     <h2>🎉 당첨! 🎉</h2>
     <div class="winner-text" id="winnerText">NAME</div>
+    
+    <!-- Stats Area -->
+    <div class="modal-stats-label">전체 항목 현황</div>
+    <div class="modal-stats-list" id="modalStatsList">
+      <!-- JS Generated Content -->
+    </div>
+
     <div class="modal-hint">화면을 클릭하여 닫기</div>
   </div>
 </div>
@@ -968,6 +1074,7 @@ const timerInput = document.getElementById('timerInput');
 const modalOverlay = document.getElementById('modalOverlay');
 const winnerModal = document.getElementById('winnerModal');
 const winnerText = document.getElementById('winnerText');
+const modalStatsList = document.getElementById('modalStatsList');
 const toast = document.getElementById('toast');
 const calcInput = document.getElementById('calcInput');
 const calcStackResult = document.getElementById('calcStackResult');
@@ -1060,6 +1167,7 @@ function finishTimerEdit() {
  * Data Management
  */
 function addItem() {
+  if (state.isSpinning) return;
   const id = Date.now();
   const nextNum = state.items.length + 1;
   state.items.push({ id, name: `항목 ${nextNum}`, weight: 1 });
@@ -1069,6 +1177,7 @@ function addItem() {
 }
 
 function deleteItem(id) {
+  if (state.isSpinning) return;
   state.items = state.items.filter(item => item.id !== id);
   if (state.items.length === 0) {
     state.items.push({ id: Date.now(), name: '항목 1', weight: 1 });
@@ -1079,22 +1188,25 @@ function deleteItem(id) {
 }
 
 function updateItem(id, field, value) {
+  if (state.isSpinning) return;
   const item = state.items.find(i => i.id === id);
   if (item) {
     if (field === 'weight') {
       let w = parseInt(value, 10);
       if (isNaN(w) || w < 0) w = 0;
       item.weight = w;
+      renderTable(); // 무게 변경 시에는 확률 재계산을 위해 테이블 갱신
     } else {
       item.name = value;
+      updateExportStr(); // 이름 변경 시에는 테이블 갱신 없이 데이터만 업데이트 (포커스 유지)
     }
-    renderTable();
     renderWheel();
     startTimer();
   }
 }
 
 function changeWeight(id, delta) {
+  if (state.isSpinning) return;
   const item = state.items.find(i => i.id === id);
   if (item) {
     let newW = item.weight + delta;
@@ -1110,6 +1222,12 @@ function getTotalWeight() {
   return state.items.reduce((sum, item) => sum + item.weight, 0);
 }
 
+// Export String Update Helper
+function updateExportStr() {
+  const validItems = state.items.filter(i => i.name.trim() !== '' && i.weight > 0);
+  exportStr.value = validItems.map(i => `${i.name}*${i.weight}`).join(',');
+}
+
 /**
  * Rendering
  */
@@ -1117,8 +1235,10 @@ function renderTable() {
   tableBody.innerHTML = '';
   const total = getTotalWeight();
 
-  const validItems = state.items.filter(i => i.name.trim() !== '' && i.weight > 0);
-  exportStr.value = validItems.map(i => `${i.name}*${i.weight}`).join(',');
+  updateExportStr(); // Use helper
+
+  // Disable controls if spinning
+  const disabledAttr = state.isSpinning ? 'disabled' : '';
 
   state.items.forEach(item => {
     const row = document.createElement('div');
@@ -1128,28 +1248,33 @@ function renderTable() {
 
     row.innerHTML = `
       <div class="cell-action">
-        <button class="btn-delete" onclick="deleteItem(${item.id})">✕</button>
+        <button class="btn-delete" onclick="deleteItem(${item.id})" ${disabledAttr}>✕</button>
       </div>
       <div class="cell-name">
         <input type="text" class="input-ghost" 
           value="${item.name}" 
           placeholder="이름 입력"
           oninput="updateItem(${item.id}, 'name', this.value)"
+          ${disabledAttr}
         />
       </div>
       <div class="cell-weight">
-        <button class="weight-btn" onclick="changeWeight(${item.id}, -1)">◀</button>
+        <button class="weight-btn" onclick="changeWeight(${item.id}, -1)" ${disabledAttr}>◀</button>
         <input type="number" class="input-ghost input-number" 
           value="${item.weight}" 
           min="0"
           onchange="updateItem(${item.id}, 'weight', this.value)"
+          ${disabledAttr}
         />
-        <button class="weight-btn" onclick="changeWeight(${item.id}, 1)">▶</button>
+        <button class="weight-btn" onclick="changeWeight(${item.id}, 1)" ${disabledAttr}>▶</button>
       </div>
       <div class="prob-text">${percent}%</div>
     `;
     tableBody.appendChild(row);
   });
+
+  // Also disable Add button
+  btnAddItem.disabled = state.isSpinning;
 }
 
 function renderWheel() {
@@ -1240,6 +1365,7 @@ spinBtn.addEventListener('click', () => {
     state.spinPhase = 'spinning';
     state.isSpinning = true;
     updateMascot(); 
+    renderTable(); // Disable controls
 
     spinBtn.textContent = "멈추기!";
     spinBtn.classList.add('stop-mode');
@@ -1320,14 +1446,39 @@ spinBtn.addEventListener('click', () => {
       state.isSpinning = false;
       state.spinPhase = 'idle';
       updateMascot(); 
+      renderTable(); // Enable controls
 
       spinBtn.disabled = false;
       spinBtn.textContent = "돌려돌려 돌림판!";
       spinBtn.classList.remove('stop-mode');
       
-      currentResult.textContent = winner.name;
+      // Calculate Stats
+      const probability = ((winner.weight / total) * 100).toFixed(1);
+      
+      // Update Result with details
+      currentResult.innerHTML = `
+        ${winner.name}
+        <div class="result-detail">
+          ${winner.weight}스택 / ${probability}%
+        </div>
+      `;
       winnerText.textContent = winner.name;
       
+      // Populate Modal Stats List
+      modalStatsList.innerHTML = '';
+      state.items.forEach(item => {
+        const p = ((item.weight / total) * 100).toFixed(1);
+        const isWinner = item.id === winner.id;
+        
+        const row = document.createElement('div');
+        row.className = `stat-row ${isWinner ? 'is-winner' : ''}`;
+        row.innerHTML = `
+          <span>${item.name}</span>
+          <span>${item.weight}스택 (${p}%)</span>
+        `;
+        modalStatsList.appendChild(row);
+      });
+
       modalOverlay.style.display = 'flex';
       void winnerModal.offsetWidth;
       winnerModal.classList.add('show');
@@ -1370,4 +1521,3 @@ updateMascot();
 </script>
 </body>
 </html>
-
